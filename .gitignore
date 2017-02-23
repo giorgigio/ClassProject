@@ -1,1 +1,7 @@
-/build/
+build.xml
+build
+build/
+nbproject
+nbproject/
+src/conf
+src/conf/
