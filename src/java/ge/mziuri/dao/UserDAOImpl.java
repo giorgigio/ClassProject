@@ -21,8 +21,8 @@ public class UserDAOImpl implements UserDAO {
         try {
             String sql = "INSERT INTO mainuser (firstname,lastname,username,password) VALUES (?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, user.getFirstName());
-            pstmt.setString(2, user.getLastName());
+            pstmt.setString(1, user.getFirstname());
+            pstmt.setString(2, user.getLastname());
             pstmt.setString(3, user.getUsername());
             pstmt.setString(4, user.getPassword());
             pstmt.executeUpdate();
