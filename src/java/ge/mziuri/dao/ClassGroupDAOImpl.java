@@ -18,14 +18,7 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
 
     @Override
     public void addClassGroup(ClassGroup classgroup) {
-        try {
-            String sql = "INSERT INTO mainuser (name) VALUES (?)";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, classgroup.getName());
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        
     }
 
     @Override

@@ -1,30 +1,15 @@
 package ge.mziuri.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ClassGroup {
+    
     private int id;
     private String name;
+    private User creator;
+    private List<User> members = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
+    private List<Exam> exams = new ArrayList<>();
 
-    public ClassGroup() {
-    }
-
-    public ClassGroup(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
