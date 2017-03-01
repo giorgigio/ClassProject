@@ -1,5 +1,6 @@
 package ge.mziuri.dao;
 
+import ge.mziuri.model.ClassGroup;
 import ge.mziuri.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,12 +20,14 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void addUser(User user) {
         try {
-            String sql = "INSERT INTO mainuser (firstname,lastname,username,password) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO mainuser (firstname,lastname,username,password,email,admin) VALUES (?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user.getFirstname());
             pstmt.setString(2, user.getLastname());
             pstmt.setString(3, user.getUsername());
             pstmt.setString(4, user.getPassword());
+            pstmt.setString(5, user.getEmail());
+            pstmt.setBoolean(6, user.isAdmin());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -42,7 +45,9 @@ public class UserDAOImpl implements UserDAO {
             if (rs.next()) {
                 String firstname = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
-                User user = new User(firstname, lastname, username, password);
+                String email = rs.getString("email");
+                Boolean admin = rs.getBoolean("admin");
+                User user = new User(firstname, lastname, username, password, email, admin);
                 return user;
             } else {
                 return null;

@@ -1,11 +1,14 @@
+CREATE TABLE classgroup(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    creator mainuser
+    );
 CREATE TABLE mainuser(
-    id serial primary key,
+    id SERIAL PRIMARY KEY,
     firstname VARCHAR(30),
     lastname VARCHAR(30),
     username VARCHAR(30),
-    password VARCHAR(30)
-    );
-CREATE TABLE ClassGroup(
-    id serial primary key,
-    name varchar(30)
+    password VARCHAR(30),
+    admin BOOLEAN DEFAULT FALSE,
+    group classgroup
     );
