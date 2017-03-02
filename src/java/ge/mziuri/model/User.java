@@ -14,17 +14,6 @@ public class User {
     public User() {
     }
 
-    public User(int id, String firstname, String lastname, String username, String password, String email, boolean admin, ClassGroup group) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.admin = admin;
-        this.group = group;
-    }
-
     public int getId() {
         return id;
     }
