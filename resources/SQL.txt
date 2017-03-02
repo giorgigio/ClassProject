@@ -1,14 +1,53 @@
-CREATE TABLE classgroup(
+CREATE TABLE class_group(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(30),
-    creator mainuser
+    name VARCHAR(30)
     );
-CREATE TABLE mainuser(
+    
+CREATE TABLE system_user(
     id SERIAL PRIMARY KEY,
     firstname VARCHAR(30),
     lastname VARCHAR(30),
     username VARCHAR(30),
     password VARCHAR(30),
+    email VARCHAR(50),
     admin BOOLEAN DEFAULT FALSE,
-    group classgroup
+    joined_group_id INT references class_group(id),
+    created_group_id INT references class_group(id)
+    );
+    
+CREATE TABLE exam(
+    id SERIAL PRIMARY KEY,
+    subject VARCHAR(30),
+    exam_date DATE,
+    exam_time TIME,
+    archived BOOLEAN DEFAULT FALSE,
+    images TEXT,
+    group_id INT references class_group(id)
+    );
+    
+CREATE TABLE post(
+    id SERIAL PRIMARY KEY,
+    post_date DATE,
+    post_time TIME,
+    text VARCHAR(1000),
+    event BOOLEAN DEFAULT FALSE,
+    author INT references system_user(id),
+    groupid INT references class_group(id)
+    );
+    
+CREATE TABLE comment(
+    id SERIAL PRIMARY KEY,
+    text VARCHAR(500) NOT NULL,
+    comment_date DATE,
+    comment_time TIME,
+    user_id INT references system_user(id),
+    exam_id INT references exam(id),
+    post_id INT references post(id)
+    );
+
+CREATE TABLE joined_event(
+    id SERIAL PRIMARY KEY,
+    type VARCHAR(30),
+    user_id INT references system_user(id),
+    post_id INT references post(id)
     );
