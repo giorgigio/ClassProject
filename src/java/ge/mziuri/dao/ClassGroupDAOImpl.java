@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClassGroupDAOImpl implements ClassGroupDAO {
     
@@ -37,7 +39,22 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
     }
 
     @Override
-    public ClassGroup getClassGroup(String name) {
-        return null;
+    public List<ClassGroup> getAllClassGroup() {
+        List<ClassGroup> groups = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM class_group;");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                ClassGroup classgroup = new ClassGroup();
+                classgroup.setId(id);
+                classgroup.setName(name);
+                groups.add(classgroup);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return groups;
     }
 }
