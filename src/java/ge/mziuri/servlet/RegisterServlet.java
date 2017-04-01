@@ -19,6 +19,7 @@ public class RegisterServlet extends HttpServlet {
     
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String username = request.getParameter("username");
@@ -32,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         user.setEmail(email);
         userDAO.addUser(user);
-        RequestDispatcher rd = request.getRequestDispatcher("index.html");
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
     }
     

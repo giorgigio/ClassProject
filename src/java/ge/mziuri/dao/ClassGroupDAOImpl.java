@@ -1,6 +1,7 @@
 package ge.mziuri.dao;
 
 import ge.mziuri.model.ClassGroup;
+import ge.mziuri.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +43,7 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
     public List<ClassGroup> getAllClassGroup() {
         List<ClassGroup> groups = new ArrayList<>();
         try {
-            pstmt = conn.prepareStatement("SELECT * FROM class_group;");
+            pstmt = conn.prepareStatement("SELECT class_group.id, class_group.name, system_user.username FROM class_group INNER JOIN system_user ON system_user.created_group_id = class_group.id;");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -50,6 +51,9 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
                 ClassGroup classgroup = new ClassGroup();
                 classgroup.setId(id);
                 classgroup.setName(name);
+                User user = new User();
+                user.setUsername(rs.getString("username"));
+                classgroup.setCreator(user);
                 groups.add(classgroup);
             }
         } catch (SQLException ex) {
