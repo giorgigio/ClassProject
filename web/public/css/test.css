@@ -1,0 +1,35 @@
+body {
+    background-color: #F5F5DC;
+}
+.Headline {
+    background-color: #5F9EA0;
+    padding: 10px;
+
+}
+.redone {
+    color:red;
+    text-decoration: underline;
+}
+h1 {
+    color: black;
+    text-align: center;
+}
+.box {
+    border-width: 1px;
+    border-style: groove;
+    border-color: black;
+    background-color: #5F9EA0;
+    margin: 10px;
+    width: 70%;
+}
+
+.groups {
+    display: table-cell;
+    width: 70%;
+}
+
+.GroupCreate{
+    display: table-cell; 
+    width: 30%;
+    text-align: center;
+}

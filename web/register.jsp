@@ -14,7 +14,7 @@
                 მომ. სახ. : <input type="text" name="username" /> <br>
                 პაროლი :   <input type="password" name="password" /> <br>
                 ელ-ფოსტა: <input type="text" name="email" /> <br>
-                <input type="submit" value="á áááá¡á¢á ááªáá" />
+                <input type="submit" value="რეგისტრაცია" />
             </form>
         </div>
     </body>

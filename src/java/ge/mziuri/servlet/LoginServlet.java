@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
         } else {
+            // Cookie-ში უნდა შეინახო მომხმარებლის id
             if (user.getGroup() == null) {
                 ClassGroupDAO classGroupDAO = new ClassGroupDAOImpl();
                 request.setAttribute("firstname", user.getFirstname());
