@@ -8,6 +8,7 @@ import ge.mziuri.model.User;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +17,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-         
+
     }
-    
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setCharacterEncoding("UTF-8");
@@ -33,7 +34,8 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
         } else {
-            // Cookie-ში უნდა შეინახო მომხმარებლის id
+            Cookie cookie = new Cookie("userId", user.getId() + "");
+            response.addCookie(cookie);
             if (user.getGroup() == null) {
                 ClassGroupDAO classGroupDAO = new ClassGroupDAOImpl();
                 request.setAttribute("firstname", user.getFirstname());
@@ -41,7 +43,8 @@ public class LoginServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("chooseGroup.jsp");
                 rd.forward(request, response);
             } else {
-                
+                RequestDispatcher rd = request.getRequestDispatcher("myGroup.jsp");
+                rd.forward(request, response);
             }
         }
     }

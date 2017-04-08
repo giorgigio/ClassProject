@@ -1,5 +1,6 @@
 package ge.mziuri.dao;
 
+import ge.mziuri.model.ClassGroup;
 import ge.mziuri.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,6 +48,7 @@ public class UserDAOImpl implements UserDAO {
                 String email = rs.getString("email");
                 boolean admin = rs.getBoolean("admin");
                 int group_id = rs.getInt("joined_group_id");
+                int id = rs.getInt("id");
                 // TODO ჯგუფია წამოსაღები
                 User user = new User();
                 user.setUsername(username);
@@ -55,6 +57,10 @@ public class UserDAOImpl implements UserDAO {
                 user.setLastname(lastname);
                 user.setEmail(email);
                 user.setAdmin(admin);
+                user.setId(id);
+                ClassGroup classGroup = new ClassGroup();
+                classGroup.setId(group_id);
+                user.setGroup(classGroup);
                 // TODO ჯგუფია დასასეტი
                 return user;
             } else {

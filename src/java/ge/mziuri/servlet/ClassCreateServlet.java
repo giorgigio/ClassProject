@@ -3,7 +3,9 @@ package ge.mziuri.servlet;
 import ge.mziuri.dao.ClassGroupDAO;
 import ge.mziuri.dao.ClassGroupDAOImpl;
 import ge.mziuri.model.ClassGroup;
+import ge.mziuri.model.User;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -19,14 +21,22 @@ public class ClassCreateServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // request პარამეტრად ექნება ჯგუფი სახელი
-        // Cookie-ში იქნება მომხმარებლის Id და ამ id-თ უნდა შექმნა მომხმარებელი
-        // ამ ორი ინფორმაციით უნდა შექმნა ჯგუფი და გაიტანო ბაზაში
         response.setCharacterEncoding("UTF-8");
         String name = request.getParameter("name");
         ClassGroupDAO classGroupDAO = new ClassGroupDAOImpl();
         ClassGroup classGroup = new ClassGroup();
         classGroup.setName(name);
+        User user = new User();
         Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("userId")) {
+                user.setId(Integer.parseInt(cookie.getValue()));
+            } 
+        }
+        classGroup.setCreator(user);
+        classGroupDAO.addClassGroup(classGroup);
+        user.setGroup(classGroup);
+        RequestDispatcher rd = request.getRequestDispatcher("myGroup.jsp");
+        rd.forward(request, response);
     }
 }

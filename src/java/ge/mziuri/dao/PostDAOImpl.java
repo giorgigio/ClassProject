@@ -1,9 +1,15 @@
 package ge.mziuri.dao;
 
 import ge.mziuri.model.Post;
+import ge.mziuri.model.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostDAOImpl implements PostDAO{
         
@@ -29,5 +35,32 @@ public class PostDAOImpl implements PostDAO{
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    public List<Post> getAllPosts() {
+        List<Post> posts = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM post");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                Date date = rs.getDate("date");
+                Time time = rs.getTime("time");
+                String text = rs.getString("text");
+                Boolean event = rs.getBoolean("event");
+                Post post = new Post();
+                post.setId(id);
+                post.setDate(date);
+                post.setTime(time);
+                post.setText(text);
+                post.setEvent(event);
+                User user = new User();
+                user.setUsername(rs.getString("username"));
+                post.setAuthor(user);
+                posts.add(post);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return posts;
     }
 }

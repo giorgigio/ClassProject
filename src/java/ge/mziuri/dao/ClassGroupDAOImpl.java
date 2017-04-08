@@ -22,7 +22,7 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
     @Override
     public void addClassGroup(ClassGroup classgroup) {
         try {
-            String sql = "INSERT INTO system_user (name) VALUES (?) RETURNING id";
+            String sql = "INSERT INTO class_group (name) VALUES (?) RETURNING id";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, classgroup.getName());
             ResultSet rs = pstmt.executeQuery();
