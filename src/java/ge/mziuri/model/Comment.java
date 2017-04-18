@@ -11,16 +11,18 @@ public class Comment {
     private User user;
     private Date date;
     private Time time;
+    private Post post;
 
     public Comment() {
     }
 
-    public Comment(int id, String text, User user, Date date, Time time) {
+    public Comment(int id, String text, User user, Date date, Time time, Post post) {
         this.id = id;
         this.text = text;
         this.user = user;
         this.date = date;
         this.time = time;
+        this.post = post;
     }
 
     public int getId() {
@@ -61,5 +63,11 @@ public class Comment {
 
     public void setTime(Time time) {
         this.time = time;
+    }
+    public Post getPost() {
+        return post;
+    }
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

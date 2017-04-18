@@ -24,18 +24,19 @@ public class PostDAOImpl implements PostDAO{
     @Override
     public void addPost(Post post, int groupId) {
         try {
-            String sql = "INSERT INTO system_user (author,date,time,text) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO post (author,date,time,text) VALUES (?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, post.getAuthor().getId());
-            pstmt.setString(2, post.getText());
-            pstmt.setDate(3, post.getDate());
-            pstmt.setTime(4, post.getTime());
+            pstmt.setDate(2, post.getDate());
+            pstmt.setTime(3, post.getTime());
+            pstmt.setString(4, post.getText());
             pstmt.setInt(5, groupId);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
+    @Override
     public List<Post> getAllPosts() {
         List<Post> posts = new ArrayList<>();
         try {
