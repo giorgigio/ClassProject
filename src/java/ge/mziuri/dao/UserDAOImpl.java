@@ -58,10 +58,11 @@ public class UserDAOImpl implements UserDAO {
                 user.setEmail(email);
                 user.setAdmin(admin);
                 user.setId(id);
-                ClassGroup classGroup = new ClassGroup();
-                classGroup.setId(group_id);
-                user.setGroup(classGroup);
-                // TODO ჯგუფია დასასეტი
+                if (group_id != 0) {
+                    ClassGroup classGroup = new ClassGroup();
+                    classGroup.setId(group_id);
+                    user.setGroup(classGroup);
+                }
                 return user;
             } else {
                 return null;

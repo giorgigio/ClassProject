@@ -24,7 +24,7 @@ public class PostDAOImpl implements PostDAO{
     @Override
     public void addPost(Post post, int groupId) {
         try {
-            String sql = "INSERT INTO post (author,date,time,text) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO post (author,post_date,post_time,text) VALUES (?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, post.getAuthor().getId());
             pstmt.setDate(2, post.getDate());

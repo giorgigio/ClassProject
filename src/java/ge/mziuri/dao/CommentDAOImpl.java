@@ -24,8 +24,8 @@ public class CommentDAOImpl implements CommentDAO{
     @Override
     public void addComment(Comment comment) {
         try {
-            String sql = "INSERT INTO comment (text,user_id,post_id,date,time) VALUES (?,?,?,?,?)";
-            pstmt = conn.prepareStatement(sql);     //↑↑ ???  ↑↑ ??? (SQL-ს უნდა ემთხვეოდეს თუ არა)
+            String sql = "INSERT INTO comment (text,user_id,post_id,comment_date,comment_time) VALUES (?,?,?,?,?)";
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, comment.getText());
             pstmt.setInt(2, comment.getUser().getId());
             pstmt.setInt(3, comment.getPost().getId());
@@ -37,7 +37,7 @@ public class CommentDAOImpl implements CommentDAO{
         }
     }
     @Override
-    public List<Comment> getAllComments() { // ???
+    public List<Comment> getAllComments() {
         List<Comment> comments = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * FROM comment");
