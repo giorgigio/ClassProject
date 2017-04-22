@@ -36,16 +36,18 @@ public class CommentDAOImpl implements CommentDAO{
             System.out.println(ex.getMessage());
         }
     }
+    
     @Override
-    public List<Comment> getAllComments() {
+    public List<Comment> getAllCommentByPostId(int postId){
         List<Comment> comments = new ArrayList<>();
-        try {
-            pstmt = conn.prepareStatement("SELECT * FROM comment");
+        try{
+            pstmt = conn.prepareStatement("SELECT * FROM post WHERE post_id = ?");
+            pstmt.setInt(1, postId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                Date date = rs.getDate("date");
-                Time time = rs.getTime("time");
+                Date date = rs.getDate("comment_date");
+                Time time = rs.getTime("comment_time");
                 String text = rs.getString("text");
                 Comment comment = new Comment();
                 comment.setId(id);
@@ -61,5 +63,33 @@ public class CommentDAOImpl implements CommentDAO{
             System.out.println(ex.getMessage());
         }
         return comments;
-    }
+        }
+    
+    @Override
+    public List<Comment> getAllCommentByExamId(int examId){
+        List<Comment> comments = new ArrayList<>();
+        try{
+            pstmt = conn.prepareStatement("SELECT * FROM post WHERE exam_id = ?");
+            pstmt.setInt(1, examId);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                Date date = rs.getDate("comment_date");
+                Time time = rs.getTime("comment_time");
+                String text = rs.getString("text");
+                Comment comment = new Comment();
+                comment.setId(id);
+                comment.setDate(date);
+                comment.setTime(time);
+                comment.setText(text);
+                User user = new User();
+                user.setUsername(rs.getString("username"));
+                comment.setUser(user);
+                comments.add(comment);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return comments;
+        }
 }

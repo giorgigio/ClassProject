@@ -11,6 +11,7 @@ public class Exam {
     private String subject;
     private Date date;
     private Time time;
+    private String text;
     private List<String> images = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
     private boolean archived;
@@ -18,11 +19,12 @@ public class Exam {
     public Exam() {
     }
 
-    public Exam(int id, String subject, Date date, Time time, boolean archived) {
+    public Exam(int id, String subject, Date date, Time time, String text, boolean archived) {
         this.id = id;
         this.subject = subject;
         this.date = date;
         this.time = time;
+        this.text = text;
         this.archived = archived;
     }
 
@@ -58,6 +60,15 @@ public class Exam {
         this.time = time;
     }
 
+    public String getText(){
+        return text;
+    }
+    
+    public void setText(String text){
+        this.text = text;
+    }
+    
+    
     public List<String> getImages() {
         return images;
     }

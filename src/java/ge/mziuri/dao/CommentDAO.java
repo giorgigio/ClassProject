@@ -7,6 +7,8 @@ public interface CommentDAO {
     
     void addComment(Comment comment);
     
-    List<Comment> getAllComments();
+    List<Comment> getAllCommentByPostId(int postId);
+    
+    List<Comment> getAllCommentByExamId(int examId);
     
 }

@@ -24,7 +24,7 @@ public class PostDAOImpl implements PostDAO{
     @Override
     public void addPost(Post post, int groupId) {
         try {
-            String sql = "INSERT INTO post (author,post_date,post_time,text) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO post (author,post_date,post_time,text,groupid) VALUES (?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, post.getAuthor().getId());
             pstmt.setDate(2, post.getDate());
@@ -37,15 +37,16 @@ public class PostDAOImpl implements PostDAO{
         }
     }
     @Override
-    public List<Post> getAllPosts() {
+    public List<Post> getAllPostsByGroupId(int groupId) {
         List<Post> posts = new ArrayList<>();
         try {
-            pstmt = conn.prepareStatement("SELECT * FROM post");
+            pstmt = conn.prepareStatement("SELECT * FROM post WHERE groupid = ?");
+            pstmt.setInt(1, groupId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                Date date = rs.getDate("date");
-                Time time = rs.getTime("time");
+                Date date = rs.getDate("post_date");
+                Time time = rs.getTime("post_time");
                 String text = rs.getString("text");
                 Boolean event = rs.getBoolean("event");
                 Post post = new Post();
@@ -53,6 +54,7 @@ public class PostDAOImpl implements PostDAO{
                 post.setDate(date);
                 post.setTime(time);
                 post.setText(text);
+                post.setEvent(event);
                 post.setEvent(event);
                 User user = new User();
                 user.setUsername(rs.getString("username"));

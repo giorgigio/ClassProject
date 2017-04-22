@@ -1,11 +1,12 @@
+<%@page import="ge.mziuri.model.ClassGroup"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Group Page</title>
-    </head>
+    <head> <link rel="stylesheet" type="text/css" href="public/css/myGroup.css"> </head>
     <body>
-        <h1>კლასი - </h1> //კლასია წამოსაღები
+        <div class="Headline">
+            <h1>კლასი - <%=request.getAttribute("className")%></h1> 
+        </div>
     </body>
 </html>

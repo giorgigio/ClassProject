@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("chooseGroup.jsp");
                 rd.forward(request, response);
             } else {
+                
                 RequestDispatcher rd = request.getRequestDispatcher("myGroup.jsp");
                 rd.forward(request, response);
             }

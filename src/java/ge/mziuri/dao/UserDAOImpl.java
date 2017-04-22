@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
     
@@ -49,7 +51,6 @@ public class UserDAOImpl implements UserDAO {
                 boolean admin = rs.getBoolean("admin");
                 int group_id = rs.getInt("joined_group_id");
                 int id = rs.getInt("id");
-                // TODO ჯგუფია წამოსაღები
                 User user = new User();
                 user.setUsername(username);
                 user.setPassword(password);
@@ -71,5 +72,32 @@ public class UserDAOImpl implements UserDAO {
             System.out.println(ex.getMessage());
         }
         return null;
+    }
+    @Override
+    public List<User> getAllUsersByGroupId(int groupId){
+        List<User> users = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM system_user WHERE joined_group_id = ?");
+            pstmt.setInt(1, groupId);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String email = rs.getString("email");
+                boolean admin = rs.getBoolean("admin");
+                int group_id = rs.getInt("joined_group_id");
+                int id = rs.getInt("id");
+                User user = new User();
+                user.setFirstname(firstname);
+                user.setLastname(lastname);
+                user.setEmail(email);
+                user.setAdmin(admin);
+                user.setId(id);
+                users.add(user);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return users;
     }
 }
