@@ -11,6 +11,5 @@ public interface UserDAO {
     
     List<User> getAllUsersByGroupId(int groupId);
     
-    List<User> getAllUsersByEventId(int eventId);
-    
+    List<User> getAllUsersByEventId(int eventId);   
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ge.mziuri.util.CookieUtil;
 
 public class ClassCreateServlet extends HttpServlet {
 
@@ -27,12 +28,7 @@ public class ClassCreateServlet extends HttpServlet {
         ClassGroup classGroup = new ClassGroup();
         classGroup.setName(name);
         User user = new User();
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("userId")) {
-                user.setId(Integer.parseInt(cookie.getValue()));
-            } 
-        }
+        user.setId(Integer.parseInt(CookieUtil.getCookieValue("userId", request)));
         classGroup.setCreator(user);
         classGroupDAO.addClassGroup(classGroup);
         user.setGroup(classGroup);

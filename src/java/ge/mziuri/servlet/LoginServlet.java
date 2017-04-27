@@ -8,10 +8,10 @@ import ge.mziuri.model.User;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ge.mziuri.util.CookieUtil;
 
 public class LoginServlet extends HttpServlet {
 
@@ -34,17 +34,16 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
         } else {
-            Cookie cookie = new Cookie("userId", user.getId() + "");
-            response.addCookie(cookie);
+            CookieUtil.addCookie("userId", "" + user.getId(), response);
+            CookieUtil.addCookie("firstname", user.getFirstname(), response);
+            CookieUtil.addCookie("lastname", user.getLastname(), response);
             if (user.getGroup() == null) {
                 ClassGroupDAO classGroupDAO = new ClassGroupDAOImpl();
-                request.setAttribute("firstname", user.getFirstname());
                 request.setAttribute("allGroups", classGroupDAO.getAllClassGroup());
                 RequestDispatcher rd = request.getRequestDispatcher("chooseGroup.jsp");
                 rd.forward(request, response);
             } else {
-                request.setAttribute("className", user.getGroup().getName());
-                request.setAttribute("name", user.getFirstname() + " " + user.getLastname());
+                CookieUtil.addCookie("groupId", "" + user.getGroup().getId(), response);
                 RequestDispatcher rd = request.getRequestDispatcher("myGroup.jsp");
                 rd.forward(request, response);
             }
