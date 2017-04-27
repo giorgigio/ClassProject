@@ -104,7 +104,9 @@ public class UserDAOImpl implements UserDAO {
     public List<User> getAllUsersByEventId(int eventId){
         List<User> users = new ArrayList<>();
         try {
-            pstmt = conn.prepareStatement("SELECT * FROM system_user ");
+            pstmt = conn.prepareStatement("SELECT system_user.firstname, system_user.lastname, system_user.email, system_user.admin, "
+                    + "system_user.joined_group_id, system_user.id FROM system_user INNER JOIN joined_event ON system_user.id = "
+                    + "joined_event.user_id WHERE joined_event.post_id = ?");
             pstmt.setInt(1, eventId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {

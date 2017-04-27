@@ -1,4 +1,4 @@
-package processor;
+package ge.mziuri.processor;
 
 import ge.mziuri.dao.ClassGroupDAO;
 import ge.mziuri.dao.ClassGroupDAOImpl;

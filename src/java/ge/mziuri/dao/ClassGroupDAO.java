@@ -9,4 +9,5 @@ public interface ClassGroupDAO {
     
     List<ClassGroup> getAllClassGroup();
     
+    //ClassGroup getGroupById(int groupId);
 }

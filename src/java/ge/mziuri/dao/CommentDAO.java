@@ -10,5 +10,4 @@ public interface CommentDAO {
     List<Comment> getAllCommentByPostId(int postId);
     
     List<Comment> getAllCommentByExamId(int examId);
-    
 }
