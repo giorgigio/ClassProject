@@ -36,7 +36,7 @@ public class ClassCreateServlet extends HttpServlet {
         classGroup.setCreator(user);
         classGroupDAO.addClassGroup(classGroup);
         user.setGroup(classGroup);
-        request.setAttribute("className", classGroup.getName());
+        request.setAttribute("className", user.getGroup().getName());
         RequestDispatcher rd = request.getRequestDispatcher("myGroup.jsp");
         rd.forward(request, response);
     }

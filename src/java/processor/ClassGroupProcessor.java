@@ -21,7 +21,7 @@ public class ClassGroupProcessor {
     private ExamDAO examDAO = new ExamDAOImpl();
     
     public ClassGroup getClassGroupById(int id){
-        
+        return null;
     }
     
 }

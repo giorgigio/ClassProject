@@ -100,4 +100,31 @@ public class UserDAOImpl implements UserDAO {
         }
         return users;
     }
+    @Override
+    public List<User> getAllUsersByEventId(int eventId){
+        List<User> users = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM system_user ");
+            pstmt.setInt(1, eventId);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String email = rs.getString("email");
+                boolean admin = rs.getBoolean("admin");
+                int group_id = rs.getInt("joined_group_id");
+                int id = rs.getInt("id");
+                User user = new User();
+                user.setFirstname(firstname);
+                user.setLastname(lastname);
+                user.setEmail(email);
+                user.setAdmin(admin);
+                user.setId(id);
+                users.add(user);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return users;
+    }
 }
