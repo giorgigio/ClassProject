@@ -9,12 +9,12 @@ import ge.mziuri.model.Post;
 import java.util.List;
 
 public class PostProcessor {
-    
+
     private PostDAO postDAO = new PostDAOImpl();
-    
+
     private CommentDAO commentDAO = new CommentDAOImpl();
-    
-    public List<Post> getAllPostsByGroupId(int groupId){
+
+    public List<Post> getAllPostsByGroupId(int groupId) {
         List<Post> posts = postDAO.getAllPostsByGroupId(groupId);
         for (Post post : posts) {
             List<Comment> comments = commentDAO.getAllCommentByExamId(post.getId());

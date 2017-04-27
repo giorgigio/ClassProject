@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Post {
-    
+
     private int id;
     private User author;
     private Date date;

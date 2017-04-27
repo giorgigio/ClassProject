@@ -9,11 +9,11 @@ import ge.mziuri.model.Exam;
 import java.util.List;
 
 public class ExamProcessor {
-    
+
     private ExamDAO examDAO = new ExamDAOImpl();
-    
+
     private CommentDAO commentDAO = new CommentDAOImpl();
-    
+
     public List<Exam> getAllExamByGroupId(int groupId) {
         List<Exam> exams = examDAO.getAllExamByGroupId(groupId);
         for (Exam exam : exams) {
@@ -21,5 +21,5 @@ public class ExamProcessor {
             exam.setComments(comments);
         }
         return exams;
-    } 
+    }
 }

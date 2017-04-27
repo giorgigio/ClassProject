@@ -11,12 +11,12 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostDAOImpl implements PostDAO{
-        
+public class PostDAOImpl implements PostDAO {
+
     private final Connection conn;
-    
+
     private PreparedStatement pstmt;
-    
+
     public PostDAOImpl() {
         conn = DatabaseUtil.getConnection();
     }
@@ -36,6 +36,7 @@ public class PostDAOImpl implements PostDAO{
             System.out.println(ex.getMessage());
         }
     }
+
     @Override
     public List<Post> getAllPostsByGroupId(int groupId) {
         List<Post> posts = new ArrayList<>();

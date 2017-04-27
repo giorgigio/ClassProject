@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Exam {
-    
+
     private int id;
     private String subject;
     private Date date;
@@ -60,15 +60,14 @@ public class Exam {
         this.time = time;
     }
 
-    public String getText(){
+    public String getText() {
         return text;
     }
-    
-    public void setText(String text){
+
+    public void setText(String text) {
         this.text = text;
     }
-    
-    
+
     public List<String> getImages() {
         return images;
     }

@@ -11,17 +11,17 @@ import ge.mziuri.dao.UserDAOImpl;
 import ge.mziuri.model.ClassGroup;
 
 public class ClassGroupProcessor {
-    
+
     private UserDAO userDAO = new UserDAOImpl();
-    
+
     private PostDAO postDAO = new PostDAOImpl();
-    
+
     private ClassGroupDAO classGroupDAO = new ClassGroupDAOImpl();
-    
+
     private ExamDAO examDAO = new ExamDAOImpl();
-    
-    public ClassGroup getClassGroupById(int id){
+
+    public ClassGroup getClassGroupById(int id) {
         return null;
     }
-    
+
 }

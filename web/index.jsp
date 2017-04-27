@@ -16,8 +16,8 @@
                 <%
                     if (request.getAttribute("logInFailed") != null && request.getAttribute("logInFailed") == Boolean.TRUE) {
                         out.write("<p style=\"color:red;\">სახელი ან პაროლი არასწორია </p>");
-                    }    
-                    %>
+                    }
+                %>
             </form>
         </div>
     </body>

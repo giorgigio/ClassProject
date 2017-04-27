@@ -11,12 +11,12 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommentDAOImpl implements CommentDAO{
-        
+public class CommentDAOImpl implements CommentDAO {
+
     private final Connection conn;
-    
+
     private PreparedStatement pstmt;
-    
+
     public CommentDAOImpl() {
         conn = DatabaseUtil.getConnection();
     }
@@ -36,11 +36,11 @@ public class CommentDAOImpl implements CommentDAO{
             System.out.println(ex.getMessage());
         }
     }
-    
+
     @Override
-    public List<Comment> getAllCommentByPostId(int postId){
+    public List<Comment> getAllCommentByPostId(int postId) {
         List<Comment> comments = new ArrayList<>();
-        try{
+        try {
             pstmt = conn.prepareStatement("SELECT * FROM post WHERE post_id = ?");
             pstmt.setInt(1, postId);
             ResultSet rs = pstmt.executeQuery();
@@ -63,12 +63,12 @@ public class CommentDAOImpl implements CommentDAO{
             System.out.println(ex.getMessage());
         }
         return comments;
-        }
-    
+    }
+
     @Override
-    public List<Comment> getAllCommentByExamId(int examId){
+    public List<Comment> getAllCommentByExamId(int examId) {
         List<Comment> comments = new ArrayList<>();
-        try{
+        try {
             pstmt = conn.prepareStatement("SELECT * FROM post WHERE exam_id = ?");
             pstmt.setInt(1, examId);
             ResultSet rs = pstmt.executeQuery();
@@ -91,5 +91,5 @@ public class CommentDAOImpl implements CommentDAO{
             System.out.println(ex.getMessage());
         }
         return comments;
-        }
+    }
 }

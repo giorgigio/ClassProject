@@ -12,12 +12,12 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExamDAOImpl implements ExamDAO{
-        
+public class ExamDAOImpl implements ExamDAO {
+
     private final Connection conn;
-    
+
     private PreparedStatement pstmt;
-    
+
     public ExamDAOImpl() {
         conn = DatabaseUtil.getConnection();
     }
@@ -37,6 +37,7 @@ public class ExamDAOImpl implements ExamDAO{
             System.out.println(ex.getMessage());
         }
     }
+
     @Override
     public List<Exam> getAllExamByGroupId(int groupId) {
         List<Exam> exams = new ArrayList<>();

@@ -14,7 +14,7 @@
         <%
             ClassGroupProcessor classGroupProcessor = new ClassGroupProcessor();
             ClassGroup classGroup = classGroupProcessor.getClassGroupById(Integer.parseInt(CookieUtil.getCookieValue("groupId", request)));
-            %>
+        %>
         <div>მომხმარებელი - <%=CookieUtil.getCookieValue("firstname", request) + CookieUtil.getCookieValue("lastname", request)%></div>
         <h1>კლასი - <%=classGroup.getName()%></h1>
         <ul style="list-style-type:none">

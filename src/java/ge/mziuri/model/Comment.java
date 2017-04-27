@@ -1,11 +1,10 @@
-
 package ge.mziuri.model;
 
 import java.sql.Date;
 import java.sql.Time;
 
 public class Comment {
-    
+
     private int id;
     private String text;
     private User user;
@@ -64,9 +63,11 @@ public class Comment {
     public void setTime(Time time) {
         this.time = time;
     }
+
     public Post getPost() {
         return post;
     }
+
     public void setPost(Post post) {
         this.post = post;
     }

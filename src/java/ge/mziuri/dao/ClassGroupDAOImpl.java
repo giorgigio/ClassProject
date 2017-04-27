@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassGroupDAOImpl implements ClassGroupDAO {
-    
+
     private Connection conn;
-    
+
     private PreparedStatement pstmt;
-    
+
     public ClassGroupDAOImpl() {
         conn = DatabaseUtil.getConnection();
     }
@@ -60,5 +60,28 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
             System.out.println(ex.getMessage());
         }
         return groups;
+    }
+
+    @Override
+    public ClassGroup getGroupById(int groupId) {
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM class_group WHERE id = ?");
+            pstmt.setInt(1, groupId);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                ClassGroup classgroup = new ClassGroup();
+                classgroup.setId(id);
+                classgroup.setName(name);
+                User user = new User();
+                user.setUsername(rs.getString("username"));
+                classgroup.setCreator(user);
+                return classgroup;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 }
