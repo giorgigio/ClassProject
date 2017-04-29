@@ -35,8 +35,11 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             CookieUtil.addCookie("userId", "" + user.getId(), response);
+            request.setAttribute("userId", "" + user.getId());
             CookieUtil.addCookie("firstname", user.getFirstname(), response);
+            request.setAttribute("firstname", user.getFirstname());
             CookieUtil.addCookie("lastname", user.getLastname(), response);
+            request.setAttribute("lastname", user.getLastname());
             if (user.getGroup() == null) {
                 ClassGroupDAO classGroupDAO = new ClassGroupDAOImpl();
                 request.setAttribute("allGroups", classGroupDAO.getAllClassGroup());
@@ -44,6 +47,7 @@ public class LoginServlet extends HttpServlet {
                 rd.forward(request, response);
             } else {
                 CookieUtil.addCookie("groupId", "" + user.getGroup().getId(), response);
+                request.setAttribute("groupId", "" + user.getGroup().getId());
                 RequestDispatcher rd = request.getRequestDispatcher("myGroup.jsp");
                 rd.forward(request, response);
             }

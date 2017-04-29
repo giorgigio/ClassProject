@@ -28,7 +28,7 @@ public class ClassCreateServlet extends HttpServlet {
         ClassGroup classGroup = new ClassGroup();
         classGroup.setName(name);
         User user = new User();
-        user.setId(Integer.parseInt(CookieUtil.getCookieValue("userId", request)));
+        user.setId(Integer.parseInt(CookieUtil.getCookieValue("userId", request, true)));
         classGroup.setCreator(user);
         classGroupDAO.addClassGroup(classGroup);
         user.setGroup(classGroup);

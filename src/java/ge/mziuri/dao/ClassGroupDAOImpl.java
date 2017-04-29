@@ -36,6 +36,8 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
     }
 
@@ -58,6 +60,8 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return groups;
     }
@@ -74,13 +78,12 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
                 ClassGroup classgroup = new ClassGroup();
                 classgroup.setId(id);
                 classgroup.setName(name);
-                User user = new User();
-                user.setUsername(rs.getString("username"));
-                classgroup.setCreator(user);
                 return classgroup;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return null;
     }

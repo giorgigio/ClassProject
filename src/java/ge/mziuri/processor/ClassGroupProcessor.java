@@ -14,14 +14,18 @@ public class ClassGroupProcessor {
 
     private UserDAO userDAO = new UserDAOImpl();
 
-    private PostDAO postDAO = new PostDAOImpl();
-
     private ClassGroupDAO classGroupDAO = new ClassGroupDAOImpl();
-
-    private ExamDAO examDAO = new ExamDAOImpl();
+    
+    private ExamProcessor examProcessor = new ExamProcessor();
+    
+    private PostProcessor postProcessor = new PostProcessor();
 
     public ClassGroup getClassGroupById(int id) {
-        return null;
+        ClassGroup classGroup = classGroupDAO.getGroupById(id);
+        classGroup.setCreator(userDAO.getCreator(id));
+        classGroup.setExams(examProcessor.getAllExamByGroupId(id));
+        classGroup.setPosts(postProcessor.getAllPostsByGroupId(id));
+        classGroup.setMembers(userDAO.getAllUsersByGroupId(id));
+        return classGroup;
     }
-
 }

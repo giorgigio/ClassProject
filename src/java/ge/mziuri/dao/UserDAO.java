@@ -12,4 +12,6 @@ public interface UserDAO {
     List<User> getAllUsersByGroupId(int groupId);
 
     List<User> getAllUsersByEventId(int eventId);
+    
+    User getCreator(int groupId);
 }

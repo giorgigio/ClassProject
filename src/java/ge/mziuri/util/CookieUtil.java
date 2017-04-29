@@ -11,7 +11,12 @@ public class CookieUtil {
         response.addCookie(cookie);
     }
 
-    public static String getCookieValue(String name, HttpServletRequest request) {
+    public static String getCookieValue(String name, HttpServletRequest request, boolean useAttribute) {
+        if (useAttribute) {
+            if (request.getAttribute(name) != null) {
+                return request.getAttribute(name).toString();
+            }
+        }
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals(name)) {

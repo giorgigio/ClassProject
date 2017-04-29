@@ -33,6 +33,8 @@ public class UserDAOImpl implements UserDAO {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
     }
 
@@ -70,6 +72,8 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return null;
     }
@@ -97,6 +101,8 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return users;
     }
@@ -126,7 +132,41 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return users;
+    }
+    
+    @Override
+    public User getCreator(int groupId) {
+        try {
+            String sql = "SELECT * FROM system_user WHERE created_group_id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, groupId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String email = rs.getString("email");
+                boolean admin = rs.getBoolean("admin");
+                int group_id = rs.getInt("joined_group_id");
+                String username = rs.getString("username");
+                int id = rs.getInt("id");
+                User user = new User();
+                user.setUsername(username);
+                user.setFirstname(firstname);
+                user.setLastname(lastname);
+                user.setEmail(email);
+                user.setAdmin(admin);
+                user.setId(id);
+                return user;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
+        }
+        return null;
     }
 }

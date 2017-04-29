@@ -35,6 +35,8 @@ public class ExamDAOImpl implements ExamDAO {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
     }
 
@@ -62,6 +64,8 @@ public class ExamDAOImpl implements ExamDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return exams;
     }

@@ -34,6 +34,8 @@ public class PostDAOImpl implements PostDAO {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
     }
 
@@ -64,6 +66,8 @@ public class PostDAOImpl implements PostDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return posts;
     }

@@ -34,6 +34,8 @@ public class CommentDAOImpl implements CommentDAO {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
     }
 
@@ -61,6 +63,8 @@ public class CommentDAOImpl implements CommentDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return comments;
     }
@@ -89,6 +93,8 @@ public class CommentDAOImpl implements CommentDAO {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
         }
         return comments;
     }
