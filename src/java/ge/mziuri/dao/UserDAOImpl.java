@@ -169,4 +169,19 @@ public class UserDAOImpl implements UserDAO {
         }
         return null;
     }
+    
+    @Override
+    public void joinGroup(int groupId, int userId){
+         try {
+            String sql = "UPDATE system_user SET joined_group_id = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, groupId);
+            pstmt.setInt(2, userId);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
+        }
+    }
 }

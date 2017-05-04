@@ -1,3 +1,4 @@
+<%@page import="ge.mziuri.model.User"%>
 <%@page import="ge.mziuri.processor.ClassGroupProcessor"%>
 <%@page import="ge.mziuri.model.ClassGroup"%>
 <%@page import="ge.mziuri.util.CookieUtil"%>
@@ -23,7 +24,10 @@
             <li><a href="addExam.jsp">გამოცდის დამატება</a></li>
             <li><a href="members.jsp">ჯგუფის წევრები</a></li>
         </ul>
-        <p>racxa</p>
-
+        <%
+            List<User> allUsers = classGroup.getMembers();
+            for(int i = 0; i<allUsers.size(); i++)
+            out.write("<p>" + allUsers.get(i).getFirstname()+allUsers.get(i).getLastname() +"</p>");
+            %>
     </body>
 </html>

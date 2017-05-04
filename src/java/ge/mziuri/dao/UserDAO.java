@@ -14,4 +14,6 @@ public interface UserDAO {
     List<User> getAllUsersByEventId(int eventId);
     
     User getCreator(int groupId);
+    
+    void joinGroup(int groupId, int userId);
 }

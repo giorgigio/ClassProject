@@ -14,10 +14,12 @@
                 <%
                     List<ClassGroup> allGroups = (List<ClassGroup>) request.getAttribute("allGroups");
                     for (int i = 0; i < allGroups.size(); i++) {
+                        ClassGroup classGroup = allGroups.get(i);
                         out.write("<div class=\"box\"> ");
-                        out.write("<form action=\"ClassCreateServlet\" method=\"POST\">");
-                        out.write("<p>ჯგუფის სახელი : " + allGroups.get(i).getName() + "</p>");
-                        out.write("<p>ჯგუფის შემქნელის სახელი :" + allGroups.get(i).getCreator().getUsername() + "</p>");
+                        out.write("<form action=\"JoinGroupServlet\" method=\"POST\">");
+                        out.write("<p>ჯგუფის სახელი : " + classGroup.getName() + "</p>");
+                        out.write("<p>ჯგუფის შემქნელის სახელი :" + classGroup.getCreator().getUsername() + "</p>");
+                        out.write("<input type=\"hidden\" value=\"" + classGroup.getId() + "\" name=\"groupId\"/>");
                         out.write("<input type=\"submit\" value=\"გაწევრიანება\"</button>");
                         out.write("</form>");
                         out.write("</div>");

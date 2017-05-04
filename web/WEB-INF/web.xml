@@ -40,4 +40,13 @@
         <servlet-name>ClassCreateServlet</servlet-name>
         <url-pattern>/ClassCreateServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>JoinGroupServlet</servlet-name>
+        <servlet-class>ge.mziuri.servlet.JoinGroupServlet</servlet-class>
+    </servlet>   
+    <servlet-mapping>
+        <servlet-name>JoinGroupServlet</servlet-name>
+        <url-pattern>/JoinGroupServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

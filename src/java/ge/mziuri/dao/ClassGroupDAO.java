@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ClassGroupDAO {
 
-    void addClassGroup(ClassGroup classgroup);
+    int addClassGroup(ClassGroup classgroup);
 
     List<ClassGroup> getAllClassGroup();
 

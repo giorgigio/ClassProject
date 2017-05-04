@@ -20,18 +20,19 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
     }
 
     @Override
-    public void addClassGroup(ClassGroup classgroup) {
+    public int addClassGroup(ClassGroup classgroup) {
+        int id = 0;
         try {
             String sql = "INSERT INTO class_group (name) VALUES (?) RETURNING id";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, classgroup.getName());
             ResultSet rs = pstmt.executeQuery();
             rs.next();
-            int groupId = rs.getInt("id");
+            id = rs.getInt("id");
             String userSql = "UPDATE system_user SET created_group_id = ?, joined_group_id = ? WHERE id = ?";
             pstmt = conn.prepareCall(userSql);
-            pstmt.setInt(1, groupId);
-            pstmt.setInt(2, groupId);
+            pstmt.setInt(1, id);
+            pstmt.setInt(2, id);
             pstmt.setInt(3, classgroup.getCreator().getId());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
@@ -39,6 +40,7 @@ public class ClassGroupDAOImpl implements ClassGroupDAO {
         } finally {
             DatabaseUtil.closeConnection(conn);
         }
+        return id;
     }
 
     @Override
