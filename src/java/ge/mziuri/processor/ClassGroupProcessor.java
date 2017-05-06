@@ -25,6 +25,7 @@ public class ClassGroupProcessor {
         classGroup.setCreator(userDAO.getCreator(id));
         classGroup.setExams(examProcessor.getAllExamByGroupId(id));
         classGroup.setPosts(postProcessor.getAllPostsByGroupId(id));
+        userDAO = new UserDAOImpl();
         classGroup.setMembers(userDAO.getAllUsersByGroupId(id));
         return classGroup;
     }

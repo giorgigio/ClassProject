@@ -19,7 +19,7 @@
         <h1>კლასი - <%=classGroup.getName()%></h1>
         <ul style="list-style-type:none">
             <li><a href="myGroup.jsp">მთავარი</a></li>
-            <li><a href="addPost.jsp">პოსტის დამატება</a></li>
+            <li><a href="addPost.jsp">ჩემი პოსტები</a></li>
             <li><a href="addExam.jsp">გამოცდის დამატება</a></li>
             <li><a href="members.jsp">ჯგუფის წევრები</a></li>
         </ul>
