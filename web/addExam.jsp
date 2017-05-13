@@ -20,10 +20,51 @@
         <ul style="list-style-type:none">
             <li><a href="myGroup.jsp">მთავარი</a></li>
             <li><a href="addPost.jsp">ჩემი პოსტები</a></li>
-            <li><a href="addExam.jsp">გამოცდის დამატება</a></li>
+            <li><a href="addExam.jsp">გამოცდები</a></li>
             <li><a href="members.jsp">ჯგუფის წევრები</a></li>
         </ul>
-        <p>racxa</p>
+        <button id="myBtn" style="margin-top: 10px;">გამოცდის დამატება</button>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="AddExamServlet" method="POST">
+                    <select name="subject">
+                        <option value="MATH">მათემატიკა</option>
+                        <option value="PHYSICS">ფიზიკა</option>
+                        <option value="BIOLOGY">ბიოლოგია</option>
+                        <option value="CHEMISTRY">ქიმია</option>
+                        <option value="GEOGRAPHY">გეოგრაფია</option>
+                        <option value="HISTORY">ისტორია</option>
+                        <option value="GEORGIAN">ქართული</option>
+                        <option value="ENGLISH">ინგლისური</option>
+                        <option value="RUSSIAN">რუსული</option>
+                    </select>
+                    <textarea name="description" rows="10" cols="78" style="resize: none;"></textarea>
+                    <input type="file" value="სურათის დამატება" style="margin-top: 5px;"</button>
+                    <input type="submit" value="გამოცდის დამატება" style="margin-top: 5px;"</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            var modal = document.getElementById('myModal');
 
+            var btn = document.getElementById("myBtn");
+
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>

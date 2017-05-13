@@ -21,7 +21,7 @@
         <ul style="list-style-type:none">
             <li><a href="myGroup.jsp">მთავარი</a></li>
             <li><a href="addPost.jsp">ჩემი პოსტები</a></li>
-            <li><a href="addExam.jsp">გამოცდის დამატება</a></li>
+            <li><a href="addExam.jsp">გამოცდები</a></li>
             <li><a href="members.jsp">ჯგუფის წევრები</a></li>
         </ul>
         <%

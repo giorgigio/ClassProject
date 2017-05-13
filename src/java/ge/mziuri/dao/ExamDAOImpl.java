@@ -25,13 +25,14 @@ public class ExamDAOImpl implements ExamDAO {
     @Override
     public void addExam(Exam exam, int groupId) {
         try {
-            String sql = "INSERT INTO exam (subject,exam_date,exam_time,text,group_id) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO exam (subject,exam_date,exam_time,text,archived,group_id) VALUES (?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, exam.getSubject());
             pstmt.setDate(2, exam.getDate());
             pstmt.setTime(3, exam.getTime());
             pstmt.setString(4, exam.getText());
-            pstmt.setInt(5, groupId);
+            pstmt.setBoolean(5, exam.isArchived());
+            pstmt.setInt(6, groupId);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

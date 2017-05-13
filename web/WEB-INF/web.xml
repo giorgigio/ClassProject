@@ -49,4 +49,22 @@
         <servlet-name>JoinGroupServlet</servlet-name>
         <url-pattern>/JoinGroupServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddPostServlet</servlet-name>
+        <servlet-class>ge.mziuri.servlet.AddPostServlet</servlet-class>
+    </servlet>   
+    <servlet-mapping>
+        <servlet-name>AddPostServlet</servlet-name>
+        <url-pattern>/AddPostServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddExamServlet</servlet-name>
+        <servlet-class>ge.mziuri.servlet.AddExamServlet</servlet-class>
+    </servlet>   
+    <servlet-mapping>
+        <servlet-name>AddExamServlet</servlet-name>
+        <url-pattern>/AddExamServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

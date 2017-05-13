@@ -24,13 +24,14 @@ public class PostDAOImpl implements PostDAO {
     @Override
     public void addPost(Post post, int groupId) {
         try {
-            String sql = "INSERT INTO post (author,post_date,post_time,text,groupid) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO post (author,post_date,post_time,event,text,groupid) VALUES (?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, post.getAuthor().getId());
             pstmt.setDate(2, post.getDate());
             pstmt.setTime(3, post.getTime());
-            pstmt.setString(4, post.getText());
-            pstmt.setInt(5, groupId);
+            pstmt.setBoolean(4, post.isEvent());
+            pstmt.setString(5, post.getText());
+            pstmt.setInt(6, groupId);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -45,6 +46,38 @@ public class PostDAOImpl implements PostDAO {
         try {
             pstmt = conn.prepareStatement("SELECT * FROM post WHERE groupid = ?");
             pstmt.setInt(1, groupId);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                Date date = rs.getDate("post_date");
+                Time time = rs.getTime("post_time");
+                String text = rs.getString("text");
+                Boolean event = rs.getBoolean("event");
+                Post post = new Post();
+                post.setId(id);
+                post.setDate(date);
+                post.setTime(time);
+                post.setText(text);
+                post.setEvent(event);
+                post.setEvent(event);
+                User user = new User();
+                user.setUsername(rs.getString("username"));
+                post.setAuthor(user);
+                posts.add(post);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
+        }
+        return posts;
+    }
+    @Override
+    public List<Post> getAllPostsByUserId(int userId) {
+        List<Post> posts = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM post WHERE author = ?");
+            pstmt.setInt(1, userId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
