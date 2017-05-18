@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head> 
-        <link rel="stylesheet" type="text/css" href="public/css/myGroup.css">
+        <link rel="stylesheet" type="text/css" href="public/css/addExam.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>კლასის სახელი</title>
     </head>

@@ -43,6 +43,7 @@ public class AddPostServlet extends HttpServlet {
         }
         PostDAO postDAO = new PostDAOImpl();
         postDAO.addPost(post, Integer.parseInt(CookieUtil.getCookieValue("groupId", request, true)));
+        request.setAttribute("allPosts", postDAO.getAllPostsByGroupId((Integer.parseInt(CookieUtil.getCookieValue("groupId", request, true)))));
         RequestDispatcher rd = request.getRequestDispatcher("myGroup.jsp");
         rd.forward(request, response);
     }

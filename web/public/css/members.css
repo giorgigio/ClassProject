@@ -27,3 +27,19 @@ div {
 .members {
     float: left;
 }
+p{
+    margin-left: 37%;
+    text-align: center;
+    border-width: 1px;
+    border-style: groove;
+    border-color: #3366ff; 
+    background-color: #00ffbf;
+    transition:ease-in-out 1s;
+    padding: 4px;
+    width: 20%;
+}
+p:hover{
+    background-color: #009973;
+    border-radius: 30px;
+    
+}

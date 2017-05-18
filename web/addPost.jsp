@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head> 
-        <link rel="stylesheet" type="text/css" href="public/css/myGroup.css">
+        <link rel="stylesheet" type="text/css" href="public/css/addPost.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>კლასის სახელი</title>
     </head>
@@ -24,7 +24,7 @@
             <li><a href="members.jsp">ჯგუფის წევრები</a></li>
         </ul>
         <button id="myBtn" style="margin-top: 10px;">პოსტის დამატება</button>
-        <div id="myModal" class="modal">
+        <div class="model"id="myModal" >
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <form action="AddPostServlet" method="POST">
@@ -59,5 +59,8 @@
                 }
             }
         </script>
+        <div class="postBox">
+            ჩემი პოსტები
+        </div>
     </body>
 </html>
