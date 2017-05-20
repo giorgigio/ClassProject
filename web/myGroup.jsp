@@ -1,3 +1,4 @@
+<%@page import="ge.mziuri.model.Post"%>
 <%@page import="ge.mziuri.processor.ClassGroupProcessor"%>
 <%@page import="ge.mziuri.model.ClassGroup"%>
 <%@page import="ge.mziuri.util.CookieUtil"%>
@@ -23,7 +24,14 @@
             <li><a href="addExam.jsp">გამოცდები</a></li>
             <li><a href="members.jsp">ჯგუფის წევრები</a></li>
         </ul>
-         
-        
+        <div class="postBoxMain">
+            <%
+            List<Post> Posts = classGroup.getPosts();
+            for(int i = 0; i<Posts.size(); i++) {
+                out.write("<p>" + Posts.get(i).getAuthor()+ " " + Posts.get(i).getDate()+"</p>");
+            }
+            %>
+            
+        </div>
     </body>
 </html>

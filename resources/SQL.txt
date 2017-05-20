@@ -20,7 +20,7 @@ CREATE TABLE exam(
     subject VARCHAR(30),
     exam_date DATE,
     exam_time TIME,
-    text VARCHAR(500),
+    description VARCHAR(500),
     archived BOOLEAN DEFAULT FALSE,
     images TEXT,
     group_id INT references class_group(id)

@@ -8,5 +8,4 @@ public interface ExamDAO {
     void addExam(Exam exam, int groupId);
 
     List<Exam> getAllExamByGroupId(int groupId);
-
 }

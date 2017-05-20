@@ -27,7 +27,7 @@
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <form action="AddExamServlet" method="POST">
+                <form action="AddExamServlet" method="POST" enctype="multipart/form-data">
                     <select name="subject">
                         <option value="MATH">მათემატიკა</option>
                         <option value="PHYSICS">ფიზიკა</option>
@@ -40,8 +40,8 @@
                         <option value="RUSSIAN">რუსული</option>
                     </select>
                     <textarea name="description" rows="10" cols="78" style="resize: none;"></textarea>
-                    <input type="file" value="სურათის დამატება" style="margin-top: 5px;"</button>
-                    <input type="submit" value="გამოცდის დამატება" style="margin-top: 5px;"</button>
+                    <input name="file" type="file" value="სურათის დამატება" style="margin-top: 5px;" multiple>
+                    <input type="submit" value="გამოცდის დამატება" style="margin-top: 5px;">
                 </form>
             </div>
         </div>

@@ -57,3 +57,10 @@ div {
     text-decoration: none;
     cursor: pointer;
 }
+.postBoxMain{
+    z-index: 1;
+    width: 40%;
+    border: 3px solid;
+    float: left;
+    
+}
