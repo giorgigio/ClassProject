@@ -24,14 +24,5 @@
             <li><a href="addExam.jsp">გამოცდები</a></li>
             <li><a href="members.jsp">ჯგუფის წევრები</a></li>
         </ul>
-        <div class="postBoxMain">
-            <%
-            List<Post> Posts = classGroup.getPosts();
-            for(int i = 0; i<Posts.size(); i++) {
-                out.write("<p>" + Posts.get(i).getAuthor()+ " " + Posts.get(i).getDate()+"</p>");
-            }
-            %>
-            
-        </div>
     </body>
 </html>
