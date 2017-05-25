@@ -24,6 +24,7 @@ public class AddPostServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String description = request.getParameter("description");
         String type = request.getParameter("type");
         User user = new User();
@@ -44,7 +45,7 @@ public class AddPostServlet extends HttpServlet {
         PostDAO postDAO = new PostDAOImpl();
         postDAO.addPost(post, Integer.parseInt(CookieUtil.getCookieValue("groupId", request, true)));
         request.setAttribute("allPosts", postDAO.getAllPostsByGroupId((Integer.parseInt(CookieUtil.getCookieValue("groupId", request, true)))));
-        RequestDispatcher rd = request.getRequestDispatcher("myGroup.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("addPost.jsp");
         rd.forward(request, response);
     }
 }

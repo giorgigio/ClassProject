@@ -1,3 +1,6 @@
+<%@page import="ge.mziuri.model.Comment"%>
+<%@page import="java.util.Date"%>
+<%@page import="ge.mziuri.model.Post"%>
 <%@page import="ge.mziuri.processor.ClassGroupProcessor"%>
 <%@page import="ge.mziuri.model.ClassGroup"%>
 <%@page import="ge.mziuri.util.CookieUtil"%>
@@ -59,16 +62,22 @@
                 }
             }
         </script>
-        <div class="postBox">
-            <p2>sergo</p2>
-            <p1>6:02PM 25.05.2017</p1>
-            <p3> გამარჯობა ბავშვებო , გუშინ ვერ მოვახერხე მოსვლა სასწავლებელ
-                 დაწესებულებაში გარკვეული საპატიო მიზეზების გამო. შემთხვევით
-                 ყური ხომ არ მოჰკარით ფიზიკის საკონტროლო წერაში რა შეფასება 
-                 გამიკეთა ჩვენი სასწავლებელის დაწესებულების ფიზიკის პედადოგმა?
-                 პატივისცემით ბ-ნო სერგო </p3>
-            <p4>sergo : daikide</p4>
-            </div>
-        </div>
+        <%
+            for (Post post : classGroup.getPosts()) {
+                out.write("<div class=\"postBox\">");
+                out.write("<p2>" + post.getAuthor().getUsername() + "</p2>");
+                out.write("<p1>" + new Date(post.getDate().getTime() + post.getTime().getTime()) + "</p1>");
+                out.write("<p3>" + post.getText() + "</p3>");
+                for (Comment comment : post.getComments()) {
+                    out.write("<p4>" + comment.getUser().getUsername() + " : " + comment.getText() + "</p4>");
+                }
+                out.write("<form action=\"AddCommentServlet\" method=\"POST\" style=\"float:left\">");
+                out.write("<input type=\"text\" name=\"comment\" size=\"80\"/>");
+                out.write("<input type=\"hidden\" name=\"postId\" value=\"" + post.getId() + "\"/>");
+                out.write("<input type=\"submit\" value=\"დამატება\"/>");
+                out.write("</form>");
+                out.write("</div>");
+            }
+            %>
     </body>
 </html>

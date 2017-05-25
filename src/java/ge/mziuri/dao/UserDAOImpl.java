@@ -77,6 +77,45 @@ public class UserDAOImpl implements UserDAO {
         }
         return null;
     }
+    
+    @Override
+    public User getUserById(int id) {
+        try {
+            String sql = "SELECT * FROM system_user WHERE id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String email = rs.getString("email");
+                boolean admin = rs.getBoolean("admin");
+                int group_id = rs.getInt("joined_group_id");
+                User user = new User();
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setFirstname(firstname);
+                user.setLastname(lastname);
+                user.setEmail(email);
+                user.setAdmin(admin);
+                user.setId(id);
+                if (group_id != 0) {
+                    ClassGroup classGroup = new ClassGroup();
+                    classGroup.setId(group_id);
+                    user.setGroup(classGroup);
+                }
+                return user;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            DatabaseUtil.closeConnection(conn);
+        }
+        return null;
+    }
+    
     @Override
     public List<User> getAllUsersByGroupId(int groupId){
         List<User> users = new ArrayList<>();

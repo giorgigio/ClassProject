@@ -75,4 +75,12 @@
         <servlet-name>AddExamServlet</servlet-name>
         <url-pattern>/AddExamServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddCommentServlet</servlet-name>
+        <servlet-class>ge.mziuri.servlet.AddCommentServlet</servlet-class>
+    </servlet>   
+    <servlet-mapping>
+        <servlet-name>AddCommentServlet</servlet-name>
+        <url-pattern>/AddCommentServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
