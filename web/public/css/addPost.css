@@ -102,3 +102,8 @@ p4{
     float:left;
     text-align: left;
 }
+.logout{
+    float:right;
+    margin-top:2%;
+    margin-right:-130px;
+}

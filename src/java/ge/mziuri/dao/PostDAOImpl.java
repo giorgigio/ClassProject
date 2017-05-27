@@ -92,7 +92,7 @@ public class PostDAOImpl implements PostDAO {
                 post.setEvent(event);
                 post.setEvent(event);
                 User user = new User();
-                user.setUsername(rs.getString("username"));
+                user.setId(rs.getInt("author"));
                 post.setAuthor(user);
                 posts.add(post);
             }

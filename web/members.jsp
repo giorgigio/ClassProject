@@ -14,9 +14,11 @@
     <body>
         <%
             ClassGroupProcessor classGroupProcessor = new ClassGroupProcessor();
-            ClassGroup classGroup = classGroupProcessor.getClassGroupById(Integer.parseInt(CookieUtil.getCookieValue("groupId", request, true)));
+            ClassGroup classGroup = classGroupProcessor.getClassGroupById(Integer.parseInt(CookieUtil.getCookieValue("groupId", request, true)),
+                    Integer.parseInt(CookieUtil.getCookieValue("userId", request, true)), false);
         %> 
         <div>მომხმარებელი - <%=CookieUtil.getCookieValue("firstname", request, true) + " " + CookieUtil.getCookieValue("lastname", request, true)%></div>
+        <a class="logout" href="index.jsp"> გასვლა </a>
         <h1>კლასი - <%=classGroup.getName()%></h1>
         <ul style="list-style-type:none">
             <li><a href="myGroup.jsp">მთავარი</a></li>

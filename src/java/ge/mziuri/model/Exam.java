@@ -18,6 +18,10 @@ public class Exam {
 
     public Exam() {
     }
+    
+    public Exam(int id) {
+        this.id = id;
+    }
 
     public Exam(int id, String subject, Date date, Time time, String text, boolean archived) {
         this.id = id;

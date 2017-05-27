@@ -1,6 +1,8 @@
 package ge.mziuri.dao;
 
 import ge.mziuri.model.Comment;
+import ge.mziuri.model.Exam;
+import ge.mziuri.model.Post;
 import ge.mziuri.model.User;
 import java.sql.Connection;
 import java.sql.Date;
@@ -24,13 +26,22 @@ public class CommentDAOImpl implements CommentDAO {
     @Override
     public void addComment(Comment comment) {
         try {
-            String sql = "INSERT INTO comment (text,user_id,post_id,comment_date,comment_time) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO comment (text,user_id,post_id,exam_id,comment_date,comment_time) VALUES (?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, comment.getText());
             pstmt.setInt(2, comment.getUser().getId());
-            pstmt.setInt(3, comment.getPost().getId());
-            pstmt.setDate(4, comment.getDate());
-            pstmt.setTime(5, comment.getTime());
+            if (comment.getPost() == null) {
+                pstmt.setInt(3, 0);
+            } else {
+                pstmt.setInt(3, comment.getPost().getId());
+            }
+            if (comment.getExam() == null) {
+                pstmt.setInt(4, 0);
+            } else {
+                pstmt.setInt(4, comment.getExam().getId());
+            }
+            pstmt.setDate(5, comment.getDate());
+            pstmt.setTime(6, comment.getTime());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -43,7 +54,7 @@ public class CommentDAOImpl implements CommentDAO {
     public List<Comment> getAllCommentByPostId(int postId) {
         List<Comment> comments = new ArrayList<>();
         try {
-            pstmt = conn.prepareStatement("SELECT * FROM post WHERE post_id = ?");
+            pstmt = conn.prepareStatement("SELECT * FROM comment WHERE post_id = ?");
             pstmt.setInt(1, postId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -57,8 +68,9 @@ public class CommentDAOImpl implements CommentDAO {
                 comment.setTime(time);
                 comment.setText(text);
                 User user = new User();
-                user.setUsername(rs.getString("username"));
+                user.setId(rs.getInt("user_id"));
                 comment.setUser(user);
+                comment.setPost(new Post(postId));
                 comments.add(comment);
             }
         } catch (SQLException ex) {
@@ -73,7 +85,7 @@ public class CommentDAOImpl implements CommentDAO {
     public List<Comment> getAllCommentByExamId(int examId) {
         List<Comment> comments = new ArrayList<>();
         try {
-            pstmt = conn.prepareStatement("SELECT * FROM post WHERE exam_id = ?");
+            pstmt = conn.prepareStatement("SELECT * FROM comment WHERE exam_id = ?");
             pstmt.setInt(1, examId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -87,8 +99,9 @@ public class CommentDAOImpl implements CommentDAO {
                 comment.setTime(time);
                 comment.setText(text);
                 User user = new User();
-                user.setUsername(rs.getString("username"));
+                user.setId(rs.getInt("user_id"));
                 comment.setUser(user);
+                comment.setExam(new Exam(examId));
                 comments.add(comment);
             }
         } catch (SQLException ex) {

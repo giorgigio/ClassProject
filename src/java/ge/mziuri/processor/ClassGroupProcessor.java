@@ -20,11 +20,15 @@ public class ClassGroupProcessor {
     
     private PostProcessor postProcessor = new PostProcessor();
 
-    public ClassGroup getClassGroupById(int id) {
+    public ClassGroup getClassGroupById(int id, int userId, boolean allPost) {
         ClassGroup classGroup = classGroupDAO.getGroupById(id);
         classGroup.setCreator(userDAO.getCreator(id));
         classGroup.setExams(examProcessor.getAllExamByGroupId(id));
-        classGroup.setPosts(postProcessor.getAllPostsByGroupId(id));
+        if (allPost) {
+            classGroup.setPosts(postProcessor.getAllPostsByGroupId(id));
+        } else {
+            classGroup.setPosts(postProcessor.getAllPostsByUserId(userId));
+        }
         userDAO = new UserDAOImpl();
         classGroup.setMembers(userDAO.getAllUsersByGroupId(id));
         return classGroup;

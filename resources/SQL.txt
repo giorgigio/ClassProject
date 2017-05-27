@@ -42,8 +42,8 @@ CREATE TABLE comment(
     comment_date DATE,
     comment_time TIME,
     user_id INT references system_user(id),
-    exam_id INT references exam(id),
-    post_id INT references post(id)
+    exam_id INT,
+    post_id INT
     );
 
 CREATE TABLE joined_event(

@@ -30,16 +30,22 @@ div {
 p{
     margin-left: 37%;
     text-align: center;
+    color:white;
     border-width: 1px;
     border-style: groove;
     border-color: #3366ff; 
-    background-color: #00ffbf;
+    background-color: #333333;
     transition:ease-in-out 1s;
     padding: 4px;
     width: 20%;
 }
 p:hover{
-    background-color: #009973;
+    background-color: #A9A9A9;
     border-radius: 30px;
     
+}
+.logout{
+    float:right;
+    margin-top:2%;
+    margin-right:-130px;
 }

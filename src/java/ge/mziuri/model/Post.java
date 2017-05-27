@@ -19,6 +19,10 @@ public class Post {
     public Post() {
     }
 
+    public Post(int id) {
+        this.id = id;
+    }
+    
     public Post(int id, User author, Date date, Time time, String text, boolean event) {
         this.id = id;
         this.author = author;
